@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>conclusion</title>
+        <link rel="shortcut icon"
+                type="image/png"
+                href="favicon.png">
+            <link rel="stylesheet"
+                href="https://use.typekit.net/cst7syj.css">
+            <link rel="stylesheet"
+                href="https//fonts.googleapis.com/css2?family=Crimson+Pro">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+          <style>
+            
+            .sidenav {
+                    height: 100%;
+                    width: 0;
+                    position: fixed;
+                    z-index: 1;
+                    top: 0;
+                    left: 0;
+                    background-color: rgb(250, 215, 209);
+                    overflow-x: hidden;
+                    transition: 0.5s;
+                    padding-top: 60px;
+                    cursor: url(cursorhover.png), pointer;
+                    }
+                
+                    .sidenav a {
+                    padding: 8px 8px 8px 32px;
+                    text-decoration: none;
+                    font-size: 25px;
+                    color: #111;
+                    display: block;
+                    transition: 0.3s;
+                    }
+                
+                    .sidenav a:hover {
+                    color: rgb(214, 154, 154);
+                    cursor: url(cursorhover.png), pointer;
+                    }
+                
+                    .sidenav .closebtn {
+                    position: absolute;
+                    top: 0;
+                    right: 25px;
+                    font-size: 36px;
+                    margin-left: 50px;
+                    }
+                
+                    #main {
+                    transition: margin-left .5s;
+                    padding: 16px;
+                    }
+                
+                    @media screen and (max-height: 450px) {
+                    .sidenav {padding-top: 15px;}
+                    .sidenav a {font-size: 18px;}
+                    }
+                    a {
+                        font-family: 'Crimson pro', serif;
+                    }
+                    .openbtn {
+                        margin:0;
+                        position:fixed;
+                    }
+                </style>
+            <style>
+                button {
+                    background-color: rgb(194, 137, 137);
+                    border: none;
+                    color: white;
+                    padding: 15px 32px;
+                    text-align: center;
+                    text-decoration: none;
+                    display: inline-block;
+                    font-size: 16px;
+                    margin: 4px 2px;
+                    margin-top: 245px;
+                    cursor: pointer;
+                    border-radius: 12px;
+                    vertical-align: middle;
+                    cursor: url(cursorhover.png), pointer;
+                    }
+            </style>
+                
+            <style>
+                html {
+                cursor: url(cursordefault.png), pointer;
+                }
+                body {
+                    font-family: 'cooper-black-std', serif;
+                    font-weight: 400;
+                    font-size: 16px;
+                    font-style: normal;
+                    background-color: rgb(253, 238, 237);
+                }
+                .body {
+                    margin-left: 75px;
+                    margin-right: 75px;
+                    margin-top: 75px;
+                }
+                h1 {
+                    font-family: 'cooper-black-std', serif;
+                    font-weight: 400;
+                    font-size: 72px;
+                    color: rgb(250, 209, 219);
+                    font-style: normal
+                }
+                h2 {
+                    font-family: 'utopia-std-headline', serif;
+                    font-weight: 400;
+                    font-size: 44px;
+                    color: rgb(250, 209, 209);
+                    font-style: normal;
+                }
+                h3 {
+                    font-family: 'Crimson pro', serif;
+                    font-weight: 400;
+                    font-size: 28px;
+                    font-style: normal;
+                }
+                p {
+                    font-family: 'Crimson pro', serif;
+                    font-weight: 400;
+                    font-size: 18px;
+                    font-style: normal; 
+                    color:rgb(181, 137, 194);
+                }
+                footer {
+                    font-family: 'Crimson pro', serif;
+                    font-weight: 400;
+                    font-size: 11px;
+                    font-style: normal;
+                }
+            </style>
+        <script>
+            /*!
+        * Fairy Dust Cursor.js
+        * - 90's cursors collection
+        * -- https://github.com/tholman/90s-cursor-effects
+        * -- https://codepen.io/tholman/full/jWmZxZ/
+        */
+        
+        (function fairyDustCursor() {
+        
+        var possibleColors = ["#FFB6C1", "#ffcccc", "#e5ccff"]
+        var width = window.innerWidth;
+        var height = window.innerHeight;
+        var cursor = {x: width/10000, y: width/10000000};
+        var particles = [];
+        
+        function init() {
+        bindEvents();
+        loop();
+        }
+        
+        // Bind events that are needed
+        function bindEvents() {
+        document.addEventListener('mousemove', onMouseMove);
+        document.addEventListener('touchmove', onTouchMove);
+        document.addEventListener('touchstart', onTouchMove);
+        
+        window.addEventListener('resize', onWindowResize);
+        }
+        
+        function onWindowResize(e) {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        }
+        
+        function onTouchMove(e) {
+        if( e.touches.length > 0 ) {
+        for( var i = 0; i < e.touches.length; i++ ) {
+        addParticle( e.touches[i].clientX, e.touches[i].clientY, possibleColors[Math.floor(Math.random()*possibleColors.length)]);
+        }
+        }
+        }
+        
+        function onMouseMove(e) {    
+        cursor.x = e.clientX;
+        cursor.y = e.clientY;
+        
+        addParticle( cursor.x, cursor.y, possibleColors[Math.floor(Math.random()*possibleColors.length)]);
+        }
+        
+        function addParticle(x, y, color) {
+        var particle = new Particle();
+        particle.init(x, y, color);
+        particles.push(particle);
+        }
+        
+        function updateParticles() {
+        
+        // Updated
+        for( var i = 0; i < particles.length; i++ ) {
+        particles[i].update();
+        }
+        
+        // Remove dead particles
+        for( var i = particles.length -1; i >= 0; i-- ) {
+        if( particles[i].lifeSpan < 0 ) {
+        particles[i].die();
+        particles.splice(i, 1);
+        }
+        }
+        
+        }
+        
+        function loop() {
+        requestAnimationFrame(loop);
+        updateParticles();
+        }
+        
+        /**
+        * Particles
+        */
+        
+        function Particle() {
+        
+        this.character = ".";
+        this.lifeSpan = 333; //ms
+        this.initialStyles ={
+        "position": "fixed",
+        "display": "block",
+        "pointerEvents": "none",
+        "z-index": "0",
+        "fontSize": "16px",
+        "will-change": "transform"
+        };
+        
+        // Init, and set properties
+        this.init = function(x, y, color) {
+        
+        this.velocity = {
+        x:  (Math.random() < 0.5 ? -1 : 1) * (Math.random() / 2),
+        y: 1
+        };
+        
+        this.position = {x: x - 90, y: y - 95};
+        this.initialStyles.color = color;
+        
+        this.element = document.createElement('span');
+        this.element.innerHTML = this.character;
+        applyProperties(this.element, this.initialStyles);
+        this.update();
+        
+        document.querySelector('.fairydust').appendChild(this.element);
+        };
+        
+        this.update = function() {
+        this.position.x += this.velocity.x;
+        this.position.y += this.velocity.y;
+        this.lifeSpan--;
+        
+        this.element.style.transform = "translate3d(" + this.position.x + "px," + this.position.y + "px, 0) scale(" + (this.lifeSpan / 333) + ")";
+        }
+        
+        this.die = function() {
+        this.element.parentNode.removeChild(this.element);
+        }
+        
+        }
+        
+        /**
+        * Utils
+        */
+        
+        // Applies css `properties` to an element.
+        function applyProperties( target, properties ) {
+        for( var key in properties ) {
+        target.style[ key ] = properties[ key ];
+        }
+        }
+        
+        init();
+        })();
+        </script>
+        <!--end of fairy dust cursor effects-->
+        <div class="body">
+            <span class="fairydust"></span></div>
+            <style>
+                .navbar {
+                  overflow: hidden;
+                  background-color: transparent;
+                  position: fixed;
+                  top: 0;
+                  width: 100%;
+                  margin:0;
+                }
+            </style>
+        </head>
+    <body style="background-color: rgb(253, 238, 237);">
+            <div id="mySidenav" class="sidenav">
+              <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+              <a href="index.html">home</a>
+              <a href="index3.html">The Antebellum North and South</a>
+              <a href="index4.html">The Battle of Gettysburg</a>
+              <a href="index5.html">The Gettysburg Address</a>
+              <a href="conclusion.html">Civil War Conclusion</a>
+              <a href="index2.html">timeline</a>
+            </div>
+          <div class="navbar">
+            <div id="main">
+              <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#10047;</span>
+            </div>
+          </div>
+            <script>
+            function openNav() {
+              document.getElementById("mySidenav").style.width = "250px";
+              document.getElementById("main").style.display = "block";
+            }
+            
+            function closeNav() {
+              document.getElementById("mySidenav").style.width = "0";
+              document.getElementById("main").style.display= "block";
+            }
+            </script>
+          <div class="body">
+              <h1>Conclusion</h1>
+              <p>It is a common notion that the Civil war ended when the Confederate General,
+                  Robert E. Lee surrendered at Appomattox Courthous on the ninth of April in 1865. 
+                  As stated by an American Battlefields Trust article, "The war ended inthe Spring, 1865... 
+                  The last battle was fought at Palmito Ranch, Texas, on May 13, 1865." 
+              </p>
+        </div>
+    </body>
+</html>
